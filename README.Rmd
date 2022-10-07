@@ -13,8 +13,8 @@ knitr::opts_chunk$set(
 
 # Skattagögn Hagstofunnar
 
-[![](figures/maelabord_screenshot.png)](https://bggj.is/skattagogn)
+[![](figures/maelabord_screenshot.png)](https://metill.is/maelabord/skattagogn)
 
-Þetta er github síðan fyrir [mælaborðið mitt sem má finna á heimasíðu minni](https://bggj.is/skattagogn){target="_blank}.
+Þetta er github síðan fyrir [mælaborðið sem má finna á heimasíðu Metils](https://metill.is/maelabord/skattagogn){target="_blank}.
 
 Hérna tek ég saman allar helstu upplýsingarnar sem má finna í gögnum Hagstofu um [skuldir, eignir og eiginfjárstöðu heimila úr skattframtölum](https://hagstofa.is/talnaefni/samfelag/lifskjor/skuldir-og-eignir/)

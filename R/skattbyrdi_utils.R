@@ -27,7 +27,7 @@ skattbyrdi_make_ggplot <- function(df, input) {
             alpha = 0.4,
             inherit.aes = FALSE
         ) +
-        geom_line(aes(group = tiundarhluti, col = tiundarhluti)) +
+        geom_line(aes(group = tiundarhluti, col = tiundarhluti), size = 1) +
         geom_text(
             data = df |> 
                 filter(ar == max(ar)),
@@ -36,11 +36,13 @@ skattbyrdi_make_ggplot <- function(df, input) {
                 col = tiundarhluti,
                 group = tiundarhluti
             ),
-            nudge_x = diff(range(df$ar))/24
+            nudge_x = diff(range(df$ar))/16,
+            size = 5
         ) +
+       
         scale_x_continuous(
             breaks = pretty_breaks(pmin(length(unique(df$ar)), 6)),
-            limits = c(min(df$ar), max(df$ar + diff(range(df$ar))/11)),
+            limits = c(min(df$ar), max(df$ar + diff(range(df$ar))/8)),
             expand = expansion()
         ) +
         scale_y_continuous(
