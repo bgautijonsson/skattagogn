@@ -42,7 +42,10 @@ tiundamork_make_plotly <- function(plot, ...) {
         plot, 
         tooltip = "text"
     ) |> 
-        layout(hoverlabel = list(align = "left"))
+        layout(hoverlabel = list(align = "left")) |> 
+        config(
+            displayModeBar = FALSE
+        )
 }
 
 tiundamork_tiundabreytur_eignafall <- c(

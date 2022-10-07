@@ -7,8 +7,13 @@ function(input, output) {
     aldurshopar_server("aldurshopar")
     
     #### SKULDAHLUTFALL ####
-    
     skuldahlutfall_server("skuldahlutfall")
+    
+    #### SKATTBYRÐI ####
+    skattbyrdi_server("skattbyrdi")
+    
+    #### ÞRÓUN ####
+    throun_server("throun")
     
     
 }

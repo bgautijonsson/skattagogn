@@ -51,7 +51,10 @@ aldurshopar_make_plotly <- function(plot, ...) {
                         y = -0.15, yanchor = "bottom", yref = "paper",
                         showarrow = FALSE,
                         text = global_caption)
-               ))
+               )) |> 
+        config(
+            displayModeBar = FALSE
+        )
 }
 
 

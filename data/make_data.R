@@ -31,5 +31,18 @@ tbl(con, "fjolskyldugerd_aldur_buseta") |>
     write_feather("data/aldurshopar.feather")
 
 
+read_feather("data/tiundamork_1997_2021.feather") |> 
+    filter(
+        tiundarbreyta == "Heildartekjur",
+        name %in% c("Skattar alls",
+                    "Tekjur alls",
+                    "Fjöldi í hóp")
+        ) |> 
+    pivot_wider() |> 
+    janitor::clean_names() |> 
+    mutate(skattbyrdi = skattar_alls / tekjur_alls) |> 
+    write_feather("data/skattbyrdi.feather")
+
+
 dbDisconnect(con)
 

@@ -237,5 +237,8 @@ skuldahlutfall_make_plotly <- function(my_plot, input) {
                         y = -0.15, yanchor = "bottom", yref = "paper",
                         showarrow = FALSE,
                         text = global_caption)
-               ))
+               )) |> 
+        config(
+            displayModeBar = FALSE
+        )
 }

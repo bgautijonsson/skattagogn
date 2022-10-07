@@ -40,6 +40,17 @@ ui <- shinyUI(
                 skuldahlutfall_ui("skuldahlutfall")
             ),
             
+            #### SKATTBYRÐI ####
+            tabPanel(
+                title = "Skattbyrði",
+                skattbyrdi_ui("skattbyrdi")
+            ),
+            
+            #### ÞRÓUN ####
+            tabPanel(
+                title = "Hlutföll",
+                throun_ui("throun")
+            )
             
         )
     )

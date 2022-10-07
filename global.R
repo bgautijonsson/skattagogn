@@ -20,6 +20,7 @@ library(DBI)
 library(feather)
 library(visitalaneysluverds)
 library(metill)
+library(shinyjs)
 
 shinyOptions(plot.autocolor = TRUE)
 
@@ -53,6 +54,11 @@ skuldahlutfall <- read_feather("data/skuldahlutfall.feather") |>
     group_by(ar, name, hlutf_tegund) |> 
     mutate(hlutf_skuld = value / sum(value)) |> 
     ungroup()
+
+skattbyrdi <- read_feather("data/skattbyrdi.feather")
+
+isk <- function(x, scale = 1, suffix = " m.kr") number(x / scale, suffix = suffix, big.mark = ".", decimal.mark = ",", accuracy = 1)
+hlutf <- label_percent(accuracy = 0.1, big.mark = ".", decimal.mark = ",")
 
 ##### Sidebar Info and Plot Captions #####
 # This is pasted into the sidebar on each page
