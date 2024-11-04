@@ -5,7 +5,7 @@ tiundamork_dreifing_fig <- function(data, input, ...) {
         mutate(p = p / sum(p)) |> 
         ungroup() |> 
         ggplot(aes(ar, p, text = text)) +
-        geom_area(aes(fill = tiundarhluti, group = tiundarhluti, col = tiundarhluti), position = "fill") +
+        geom_col(aes(fill = tiundarhluti, group = tiundarhluti, col = tiundarhluti), position = "fill") +
         scale_x_continuous() +
         scale_y_continuous(labels = label_percent(big.mark = ".", decimal.mark = ",")) +
         scale_colour_brewer(type = "div", palette = "RdYlBu") +
@@ -23,7 +23,7 @@ tiundamork_magn_fig <- function(data, input, ...) {
     data |> 
         mutate(plot_value = ifelse(plot_value < 0, 0, plot_value)) |> 
         ggplot(aes(ar, plot_value, text = text)) +
-        geom_area(aes(fill = tiundarhluti, col = tiundarhluti, group = tiundarhluti), position = "stack") +
+        geom_col(aes(fill = tiundarhluti, col = tiundarhluti, group = tiundarhluti), position = "stack") +
         scale_x_continuous() +
         scale_y_continuous(labels = label_number(suffix = " mkr", big.mark = ".", decimal.mark = ",")) +
         scale_colour_brewer(type = "div", palette = "RdYlBu") +

@@ -29,7 +29,11 @@ skattbyrdi_ui <- function(id) {
                 tabPanel(
                     "Mynd",
                     br(),
-                    plotlyOutput(NS(id, "skattbyrdi_plot"), height = 700, width = "100%") |> withSpinner()  
+                    plotlyOutput(NS(id, "skattbyrdi_plot"), height = 700, width = "100%") |> withSpinner()
+                    # downloadButton(
+                    #     outputId = NS(id, "download_plot"),
+                    #     label = "Sækja mynd"
+                    # )
                 ),
                 tabPanel(
                     "Tafla",
@@ -106,5 +110,29 @@ skattbyrdi_server <- function(id) {
             bindEvent(
                 input$goButton, ignoreNULL = FALSE
             )
+        
+        output$download_plot <- downloadHandler(
+            filename = function() {
+                "myndrit.png"
+            },
+            content = function(file) {
+                df <- skattbyrdi_df()
+                
+                ggsave(
+                    plot = skattbyrdi_plot() +
+                        scale_x_tufte(
+                            breaks = tufte_breaks(df$ar, n = 10),
+                            limits = c(min(df$ar), max(df$ar + diff(range(df$ar))/8)),
+                            expand = expansion()
+                        ) +
+                        scale_y_tufte(
+                            breaks = tufte_breaks(df$visitala),
+                            labels = skattbyrdi_y_labels(input)
+                        ),
+                    filename = file,
+                    width = 8, height = 0.5 * 8, scale = 1.5
+                )
+            }
+        )
     })
 }

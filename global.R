@@ -21,12 +21,13 @@ library(feather)
 library(visitalaneysluverds)
 library(metill)
 library(shinyjs)
+library(arrow)
 
 shinyOptions(plot.autocolor = TRUE)
 
 #### DATA ####
 
-tiundamork <- read_feather("data/tiundamork_1997_2021.feather") |> 
+tiundamork <- read_feather("data/tiundamork.feather") |> 
     filter(tiundarhluti != "Alls") |> 
     inner_join(
         vnv() |> 
@@ -64,12 +65,13 @@ hlutf <- label_percent(accuracy = 0.1, big.mark = ".", decimal.mark = ",")
 # This is pasted into the sidebar on each page
 sidebar_info <- paste0(
     br(" "),
+    p("Hægt er að færa mús (í tölvu) eða putta (í snjalltæki)  yfir myndir til að sjá nákvæmar tölur"),
     h5("Höfundur:"),
     p("Brynjólfur Gauti Guðrúnar Jónsson"),
     HTML("<a href='https://github.com/bgautijonsson/skattagogn' target='_top'> Kóði og gögn </a>")
 )
 # This is the caption for plots
-global_caption <- ""
+global_caption <- "Mynd fengin frá metill.is/maelabord/skattagogn"
 
 
 ##### THEMES #####

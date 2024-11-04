@@ -55,7 +55,16 @@ throun_ui <- function(id) {
         ),
         
         mainPanel(
-            plotlyOutput(NS(id, "throun_plot"), height = 700, width = "100%") |> withSpinner()  
+            plotlyOutput(
+                NS(id, "throun_plot"),
+                height = 700,
+                width = "100%"
+            ) |> 
+                withSpinner()
+            # downloadButton(
+            #     outputId = NS(id, "download_plot"),
+            #     label = "Sækja mynd"
+            # )
         )
     )
 }
@@ -83,6 +92,19 @@ throun_server <- function(id) {
             bindEvent(
                 input$goButton, ignoreNULL = FALSE
             )
+        
+        output$download_plot <- downloadHandler(
+            filename = function() {
+                "myndrit.png"
+            },
+            content = function(file) {
+                ggsave(
+                    plot = throun_plot(),
+                    filename = file,
+                    width = 8, height = 0.5 * 8, scale = 1.3
+                )
+            }
+        )
     })
     
 }

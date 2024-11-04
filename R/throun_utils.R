@@ -54,8 +54,10 @@ throun_make_ggplot <- function(df, input) {
         ) +
         scale_colour_distiller(type = "div", palette = "RdYlBu", direction = 1) +
         coord_cartesian() +
-        theme(legend.position = "none",
-              plot.title = element_text(size = 16)) +
+        theme(
+            legend.position = "none",
+            plot.title = element_text(size = 16)
+        ) +
         labs(
             x = NULL,
             y = NULL,

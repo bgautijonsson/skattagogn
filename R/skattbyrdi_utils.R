@@ -80,7 +80,7 @@ skattbyrdi_make_table <- function(df, input) {
         unite(name, ar, col = "name") |> 
         pivot_wider() |> 
         select(-3) |> 
-        mutate(visitala_2021 = skattbyrdi_y_labels(input)(visitala_2021)) |> 
+        mutate(visitala_2023 = skattbyrdi_y_labels(input)(visitala_2023)) |> 
         mutate_at(vars(starts_with("skattbyrdi")), label_percent(accuracy = 0.1)) |> 
         set_names(
             "Tíundarhluti", 

@@ -112,7 +112,7 @@ skuldahlutfall_dreifing_fig <- function(data, input) {
     
     data |> 
         ggplot(aes(ar, p, text = text)) +
-        geom_area(aes(fill = fill_var, group = fill_var, col = fill_var), position = "fill", alpha = alpha) +
+        geom_col(aes(fill = fill_var, group = fill_var, col = fill_var), position = "fill", alpha = alpha) +
         scale_x_continuous() +
         scale_y_continuous(labels = label_percent(big.mark = ".", decimal.mark = ",")) +
         scale_colour +
@@ -139,7 +139,7 @@ skuldahlutfall_hlutf_fig <- function(data, input) {
         
         data <- data |> 
             group_by(ar) |> 
-            mutate(hlutf_heild = sum(hlutf)) |> 
+            mutate(hlutf_heild = hlutf) |> 
             ungroup() |> 
             mutate(text = str_c("Ár: ", ar, "\n",
                                 text_names[input$group_var], ": ", fill_var, "\n",
@@ -166,7 +166,7 @@ skuldahlutfall_hlutf_fig <- function(data, input) {
     
     data |> 
         ggplot(aes(ar, hlutf, text = text)) +
-        geom_area(aes(fill = fill_var, group = fill_var, col = fill_var), position = "stack", alpha = alpha) +
+        geom_col(aes(fill = fill_var, group = fill_var, col = fill_var), position = "stack", alpha = alpha) +
         scale_x_continuous() +
         scale_y_continuous(labels = label_percent(big.mark = ".", decimal.mark = ",")) +
         scale_colour +
@@ -204,7 +204,7 @@ skuldahlutfall_magn_fig <- function(data, input) {
     
     data |> 
         ggplot(aes(ar, value, text = text)) +
-        geom_area(aes(fill = fill_var, group = fill_var, col = fill_var), position = "stack", alpha = alpha) +
+        geom_col(aes(fill = fill_var, group = fill_var, col = fill_var), position = "stack", alpha = alpha) +
         scale_x_continuous() +
         scale_y_continuous(labels = label_number(suffix = " manns", big.mark = ".", decimal.mark = ",")) +
         scale_colour +
@@ -225,19 +225,9 @@ skuldahlutfall_make_plotly <- function(my_plot, input) {
         my_plot,
         tooltip = "text"
     ) |> 
-        layout(hoverlabel = list(align = "left"),
-               margin = list(
-                   t = 60,
-                   r = 0,
-                   b = 120,
-                   l = 0
-               ),
-               annotations = list(
-                   list(x = 0.8, xanchor = "right", xref = "paper",
-                        y = -0.15, yanchor = "bottom", yref = "paper",
-                        showarrow = FALSE,
-                        text = global_caption)
-               )) |> 
+        layout(
+            hoverlabel = list(align = "left")
+        ) |> 
         config(
             displayModeBar = FALSE
         )
